@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;600;700&display=swap"
+      rel="stylesheet" />
+    <title>Frontend Mentor | Ping coming soon page</title>
+    <style>
+      :root {
+        --color-blue: hsl(223, 87%, 63%);
+        --color-pale-blue: hsl(223, 100%, 88%);
+        --color-light-red: hsl(354, 100%, 66%);
+        --color-gray: hsl(0, 0%, 59%);
+        --color-very-dark-blue: hsl(209, 33%, 12%);
+        --font-weight-light: 300;
+        --font-weight-semi-bold: 600;
+        --font-weight-bold: 700;
+      }
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      img {
+        width: 100%;
+      }
+      html {
+        font-size: 20px;
+      }
+      body {
+        width: 100%;
+        min-height: 100vh;
+        font-family: "Libre Franklin", sans-serif;
+        display: flex;
+        justify-content: center;
+      }
+
+      #grid {
+        display: grid;
+        margin: 3rem 1rem;
+        max-width: 20rem;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 5rem;
+      }
+      header > img {
+        width: 3.6rem;
+      }
+      main {
+        display: grid;
+        gap: 1rem;
+      }
+      main > h1 {
+        text-align: center;
+        font-weight: var(--font-weight-light);
+        color: var(--color-gray);
+      }
+      .bold {
+        font-weight: var(--font-weight-bold);
+      }
+      .black {
+        color: var(--color-very-dark-blue);
+      }
+      main > h2 {
+        text-align: center;
+        font-weight: var(--font-weight-light);
+        color: var(--color-very-dark-blue);
+        font-size: 1rem;
+      }
+      main > form {
+        display: grid;
+        gap: 0.75rem;
+        margin: 2rem 0;
+      }
+
+      main > form > input[type="email"] {
+        font-family: "Libre Franklin", sans-serif;
+        height: 2.5rem;
+        border-radius: 1.25rem;
+        outline: none;
+        border: 0.0625rem solid var(--color-pale-blue);
+        padding: 0 2rem;
+        font-size: 0.8rem;
+        font-weight: var(--font-weight-light);
+        color: var(--color-very-dark-blue);
+      }
+      main > form > input[type="email"]::placeholder {
+        color: var(--color-pale-blue);
+      }
+
+      main > form > input[type="submit"] {
+        height: 2.5rem;
+        border-radius: 1.25rem;
+        border: none;
+        color: white;
+        background-color: var(--color-blue);
+        font-weight: 500;
+        font-size: 0.8rem;
+        letter-spacing: 0.04rem;
+      }
+
+      main > img {
+        margin: 2rem 0;
+      }
+
+      footer {
+        display: grid;
+        gap: 2rem;
+        margin-top: 4rem;
+      }
+
+      footer #icons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      footer #icons .icon-wrapper {
+        display: grid;
+        place-items: center;
+        height: 2.5rem;
+        width: 2.5rem;
+        border-radius: 1.25rem;
+        border: 0.0625rem solid var(--color-pale-blue);
+      }
+
+      footer p#copyright {
+        text-align: center;
+        font-size: 0.6rem;
+        color: var(--color-gray);
+      }
+
+      @media (min-width: 640px) {
+        #grid {
+          max-width: 32rem;
+        }
+
+        main > form {
+          grid-template-columns: 1fr 10rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="grid">
+      <header><img src="./images/logo.svg" alt="ping logo" /></header>
+      <main>
+        <h1>We are launching <span class="bold black">soon!</span></h1>
+        <h2>Subscribe and get notified</h2>
+        <form action="#" method="post" novalidate>
+          <input type="email" placeholder="Your email address..." />
+          <input type="submit" value="Notify Me" />
+        </form>
+        <img src="./images/illustration-dashboard.png" alt="dashboard" />
+      </main>
+      <footer>
+        <div id="icons">
+          <div class="icon-wrapper">
+            <svg
+              height="23"
+              width="23"
+              xmlns="http://www.w3.org/2000/svg"
+              class="ionicon"
+              viewBox="0 0 512 512">
+              <path
+                d="M480 257.35c0-123.7-100.3-224-224-224s-224 100.3-224 224c0 111.8 81.9 204.47 189 221.29V322.12h-56.89v-64.77H221V208c0-56.13 33.45-87.16 84.61-87.16 24.51 0 50.15 4.38 50.15 4.38v55.13H327.5c-27.81 0-36.51 17.26-36.51 35v42h62.12l-9.92 64.77H291v156.54c107.1-16.81 189-109.48 189-221.31z"
+                fill-rule="evenodd"
+                fill="#4f7df3" />
+            </svg>
+          </div>
+          <div class="icon-wrapper">
+            <svg
+              height="22"
+              width="22"
+              xmlns="http://www.w3.org/2000/svg"
+              class="ionicon"
+              viewBox="0 0 512 512">
+              <path
+                fill="#4f7df3"
+                d="M496 109.5a201.8 201.8 0 01-56.55 15.3 97.51 97.51 0 0043.33-53.6 197.74 197.74 0 01-62.56 23.5A99.14 99.14 0 00348.31 64c-54.42 0-98.46 43.4-98.46 96.9a93.21 93.21 0 002.54 22.1 280.7 280.7 0 01-203-101.3A95.69 95.69 0 0036 130.4c0 33.6 17.53 63.3 44 80.7A97.5 97.5 0 0135.22 199v1.2c0 47 34 86.1 79 95a100.76 100.76 0 01-25.94 3.4 94.38 94.38 0 01-18.51-1.8c12.51 38.5 48.92 66.5 92.05 67.3A199.59 199.59 0 0139.5 405.6a203 203 0 01-23.5-1.4A278.68 278.68 0 00166.74 448c181.36 0 280.44-147.7 280.44-275.8 0-4.2-.11-8.4-.31-12.5A198.48 198.48 0 00496 109.5z" />
+            </svg>
+          </div>
+          <div class="icon-wrapper">
+            <svg
+              height="22"
+              width="22"
+              xmlns="http://www.w3.org/2000/svg"
+              class="ionicon"
+              viewBox="0 0 512 512">
+              <path
+                fill="#4f7df3"
+                d="M349.33 69.33a93.62 93.62 0 0193.34 93.34v186.66a93.62 93.62 0 01-93.34 93.34H162.67a93.62 93.62 0 01-93.34-93.34V162.67a93.62 93.62 0 0193.34-93.34h186.66m0-37.33H162.67C90.8 32 32 90.8 32 162.67v186.66C32 421.2 90.8 480 162.67 480h186.66C421.2 480 480 421.2 480 349.33V162.67C480 90.8 421.2 32 349.33 32z" />
+              <path
+                fill="#4f7df3"
+                d="M377.33 162.67a28 28 0 1128-28 27.94 27.94 0 01-28 28zM256 181.33A74.67 74.67 0 11181.33 256 74.75 74.75 0 01256 181.33m0-37.33a112 112 0 10112 112 112 112 0 00-112-112z" />
+            </svg>
+          </div>
+        </div>
+        <p id="copyright"></p>
+      </footer>
+    </div>
+    <script>
+      document.getElementById("copyright").innerHTML =
+        "&copy; " +
+        new Date().getFullYear() +
+        " Copyright Ping. All rights reserved.";
+    </script>
+  </body>
+</html>
