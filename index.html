@@ -83,11 +83,15 @@
       }
       main > form {
         display: grid;
-        gap: 0.75rem;
+        gap: 0.25rem;
         margin: 2rem 0;
       }
 
-      main > form > input[type="email"] {
+      main > form > *:not(:first-of-type) {
+        margin-top: 0.25rem;
+      }
+
+      main > form > input {
         font-family: "Libre Franklin", sans-serif;
         height: 2.5rem;
         border-radius: 1.25rem;
@@ -98,6 +102,19 @@
         font-weight: var(--font-weight-light);
         color: var(--color-very-dark-blue);
       }
+
+      .error-border {
+        border: 0.0625rem solid red;
+      }
+
+      .error-message {
+        font-style: italic;
+        color: var(--color-light-red);
+        font-size: 0.5rem;
+        text-align: center;
+        height: 1rem;
+      }
+
       main > form > input[type="email"]::placeholder {
         color: var(--color-pale-blue);
       }
@@ -111,6 +128,11 @@
         font-weight: 500;
         font-size: 0.8rem;
         letter-spacing: 0.04rem;
+      }
+
+      main > form > input[type="submit"]:hover {
+        cursor: pointer;
+        background-color: hsl(223, 45%, 57%);
       }
 
       main > img {
@@ -152,6 +174,16 @@
         main > form {
           grid-template-columns: 1fr 10rem;
         }
+
+        main > form > *:not(:first-of-type) {
+          margin-top: 0;
+        }
+        .error-message {
+          grid-column: 1 / 2;
+          grid-row: 2 / 3;
+          text-align: left;
+          margin-left: 1rem;
+        }
       }
     </style>
   </head>
@@ -161,8 +193,9 @@
       <main>
         <h1>We are launching <span class="bold black">soon!</span></h1>
         <h2>Subscribe and get notified</h2>
-        <form action="#" method="post" novalidate>
-          <input type="email" placeholder="Your email address..." />
+        <form action="#" method="post" novalidate id="form">
+          <input type="email" id="email" placeholder="Your email address..." />
+
           <input type="submit" value="Notify Me" />
         </form>
         <img src="./images/illustration-dashboard.png" alt="dashboard" />
@@ -214,10 +247,80 @@
       </footer>
     </div>
     <script>
-      document.getElementById("copyright").innerHTML =
-        "&copy; " +
-        new Date().getFullYear() +
-        " Copyright Ping. All rights reserved.";
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("copyright").innerHTML =
+          "&copy; " +
+          new Date().getFullYear() +
+          " Copyright Ping. All rights reserved.";
+
+        const form = document.getElementById("form");
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          const email = document.getElementById("email");
+
+          if (email.classList.contains("error-border")) {
+            email.classList.remove("error-border");
+          }
+
+          const isExistingErrorMessage = form.querySelector(".error-message");
+          if (isExistingErrorMessage) {
+            isExistingErrorMessage.remove();
+          }
+
+          let isValid = true;
+
+          if (email.value.trim() === "") {
+            isValid = false;
+            email.classList.add("error-border");
+            const errorMessage = document.createElement("div");
+            errorMessage.innerText = "Input is empty";
+            errorMessage.classList.add("error-message");
+            email.insertAdjacentElement("afterend", errorMessage);
+            return;
+          }
+
+          const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+          if (!re.test(email.value.trim())) {
+            isValid = false;
+            email.classList.add("error-border");
+            const errorMessage = document.createElement("div");
+            errorMessage.innerText = "Invalid email";
+            errorMessage.classList.add("error-message");
+            email.insertAdjacentElement("afterend", errorMessage);
+          }
+
+          document.addEventListener("click", (e) => {
+            if (!event.target.closest("#form")) {
+              if (email.classList.contains("error-border")) {
+                email.classList.remove("error-border");
+              }
+              const isExistingErrorMessage =
+                form.querySelector(".error-message");
+              if (isExistingErrorMessage) {
+                isExistingErrorMessage.remove();
+              }
+            }
+          });
+          if (isValid) {
+            const video = document.createElement("video");
+            video.setAttribute("autoplay", true);
+            video.setAttribute("loop", true);
+            video.setAttribute("muted", false);
+            video.style.width = "100%";
+            const source = document.createElement("source");
+            source.src = "./images/bonus.mp4";
+            source.type = "video/mp4";
+            video.appendChild(source);
+
+            const body = document.querySelector("body");
+            body.innerHTML = "";
+            body.appendChild(video);
+          }
+        });
+      });
     </script>
   </body>
 </html>
